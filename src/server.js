@@ -1,6 +1,6 @@
 import app from './app';
 
-const port = parseInt(process.env.PORT, 10) || 8000;
+const port = parseInt(process.env.PORT, 10) || 3110;
 
 app.set('port', port);
 
