@@ -2,7 +2,7 @@
   "name": "david-turing-store",
   "version": "1.0.0",
   "description": "E-commerce store",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "heroku-postbuild": "npm run build",
     "start": "node lib/server.js",
@@ -38,7 +38,7 @@
     "connect-session-sequelize": "^6.0.0",
     "cors": "^2.8.5",
     "dotenv": "^8.0.0",
-    "epress": "0.0.1-security",
+    "express": "^4.17.1",
     "express-session": "^1.16.1",
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.9.1",
