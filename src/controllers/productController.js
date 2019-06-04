@@ -1,4 +1,4 @@
-import { product, product_category, Sequelize, sequelize, attribute_value } from '../models';
+import { product, Sequelize, sequelize } from '../models';
 import paginate from '../utils/pagination';
 
 const Op = Sequelize.Op;
@@ -182,6 +182,52 @@ class ProductController {
         "field": "Product"
       }
     }));
+  }
+
+  /**
+   * @static
+   * @param {object} req
+   * @return {json} res
+   * @description get every product in a departmenr.
+   */
+  static getAllProductsInDepartment(req, res) {
+    const { department_id } = req.params;
+    const { query } = req;
+    const limit = Number(query.limit) || 20;
+    const page = Number(req.query.page) || 1;
+    const offset = (page - 1) * limit;
+    const description_length = Number(query.description_length) || 200;
+
+    if (!(Number.isInteger(Number(department_id)))) {
+      return res.status(400).json(
+        {
+          "status": 400,
+          "code": "DEP_01",
+          "message": "The ID is not a number.",
+          "field": "department_id"
+        }
+      )
+    }
+
+    sequelize.query('CALL catalog_get_products_on_department(:inDepartmentId, :inShortProductDescriptionLength, :inProductsPerPage, :inStartItem)',
+    {
+      replacements: { inDepartmentId: department_id, inShortProductDescriptionLength: description_length, inProductsPerPage: limit, inStartItem: offset },
+    })
+    .then(Products => {
+      const count = Products.length;
+      return res.status(200).json({
+        count,
+        rows: Products
+      });
+    })
+    .catch(error => res.status(400).json(
+      {
+        "code": "PRO_05",
+        "message": "Product fetch Error.",
+        "field": "Product",
+        "status": 400
+      }
+    ));
   }
 }
 

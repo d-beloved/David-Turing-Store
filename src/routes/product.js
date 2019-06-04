@@ -6,6 +6,7 @@ const routes = Router();
 
 routes.get('/', ProductController.getAllProduct);
 routes.get('/inCategory/:category_id', ProductController.getAllProductsInCategory);
+routes.get('/inDepartment/:department_id', ProductController.getAllProductsInDepartment);
 routes.get('/:product_id', ProductController.getOneProduct);
 routes.get('/search', ProductController.searchForProduct);
 
