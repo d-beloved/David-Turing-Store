@@ -27,12 +27,31 @@ class CustomerInputValidation {
     };
   }
 
-  static checkLength(...params) {
-    return (req, res, next) => {
-      for (const p of params) {
-        
-      }
+  // static checkLength(...params) {
+  //   return (req, res, next) => {
+  //     for (const p of params) {
+  //       if (req.body[p].length > )
+  //     }
+  //   }
+  // }
+
+
+  static checkEmail(req, res, next) {
+    // checks if the email entered is valid
+    if (/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(req.body.email) === false) {
+      return res.status(400).json({
+        "error": {
+          "status": 400,
+          "code": "USR_03",
+          "message": "The email is invalid.",
+          "field": "email"
+        }
+      });
     }
+    return next();
   }
 
+
 }
+
+export default CustomerInputValidation;

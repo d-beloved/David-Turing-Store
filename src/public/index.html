@@ -1,0 +1,53 @@
+<html>
+
+<head>
+  <title>Stripe Checkout Integration</title>
+  <script src="https://checkout.stripe.com/checkout.js"></script>
+</head>
+
+<body>
+  <h2>Stripe Checkout</h2>
+
+  <div id="shop">
+    <button id="buttonCheckout">Checkout</button>
+  </div>
+</body>
+
+<script>
+  var checkoutHandler = StripeCheckout.configure({
+    key: 'pk_test_mL9UOjNbGCgzSfZTUUD46iuH00o8To1jWW',
+    locale: "auto"
+  });
+
+  var button = document.getElementById("buttonCheckout");
+  button.addEventListener("click", function (ev) {
+    checkoutHandler.open({
+      name: "Turing Store",
+      description: "A whooping nice purchase",
+      token: handleToken
+    });
+
+    function handleToken(token) {
+      // create a post request
+      console.log(token);
+      // fetch("/stripe/charge", {
+      //   method: "POST",
+      //   headers: {"Content-Type": "application/json"},
+      //   body: JSON.stringify(token)
+      // })
+      // .then(response => {
+      //   if (!response.ok)
+      //     throw response;
+      //     return response.json();
+      // })
+      // .then(output => {
+      //   console.log("Purchase succeeded:", output);
+      // })
+      // .catch(err => {
+      //   console.log("Purchase failed:", err);
+      // })
+    }
+  });
+</script>
+
+</html>
