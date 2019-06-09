@@ -1,15 +1,9 @@
 import uniqid from 'uniqid';
 import {
   sequelize,
-  orders,
-  order_detail,
   shopping_cart,
-  shipping,
-  tax,
   product
 } from '../models';
-import paginate from '../utils/pagination';
-
 
 /**
  * Order Functions
@@ -108,7 +102,7 @@ class OrdersController {
 
     sequelize.query('CALL orders_get_by_customer_id(:inCustomerId)',
     {
-      replacements: { inCustomerId: customer_id},
+      replacements: { inCustomerId: customer_id },
     })
       .then(details => {
         return res.status(200).json(

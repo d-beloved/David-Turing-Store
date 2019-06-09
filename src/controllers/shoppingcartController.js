@@ -1,5 +1,5 @@
 import uniqid from 'uniqid';
-import { sequelize, shopping_cart, product, attribute_value } from '../models';
+import { sequelize } from '../models';
 
 /**
  * ShoppingCart functions

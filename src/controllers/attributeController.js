@@ -1,7 +1,7 @@
 import {
   attribute,
   attribute_value,
-  product_attribute
+  sequelize
 } from '../models';
 
 /**
@@ -18,9 +18,9 @@ class AttributeController {
   static getAttributes(req, res) {
     attribute.findAll()
       .then((Attributes) => {
-        return res.status(200).json({
+        return res.status(200).json(
           Attributes
-        });
+        );
       })
       .catch(error => res.status(400).json({
         "error": {
@@ -56,9 +56,9 @@ class AttributeController {
       where: { attribute_id }
     })
       .then((Attribute) => {
-        res.status(200).json({
+        res.status(200).json(
           Attribute,
-        });
+        );
       })
       .catch(error => res.status(400).json({
         "error": {
@@ -95,9 +95,9 @@ class AttributeController {
       attributes: ['attribute_value_id', 'value']
     })
       .then((values) => {
-        res.status(200).json({
+        res.status(200).json(
           values
-        });
+        );
       })
       .catch(error => res.status(400).json({
         "error": {
@@ -130,32 +130,23 @@ class AttributeController {
       })
     }
 
-    product_attribute.findAll({
-      where: { product_id }
+    sequelize.query('CALL catalog_get_product_attributes(:inProductId)',
+    {
+      replacements: { inProductId: product_id }
     })
-    .then((foundProducts) => {
-      if (foundProducts) {
-        res.status(200).json({
-          foundProducts
-        })
-        // return attribute_value.findAll({
-        //   where: { attribute_value_id }
-        // })
-        // .then((productAttribute) => {
-        //   res.status(200).json({
-        //     productAttribute
-        //   });
-      }})
-        .catch(error => res.status(400).json({
-          "error": {
-            "status": 400,
-            "code": "ATR_02",
-            "message": "Something went wrong.",
-            "field": "product_id"
-          }
-        }))
-      // }
-    // })
+    .then(productAtrribute => {
+      return res.status(200).json(
+        productAtrribute
+      )
+    })
+    .catch(error => res.status(400).json({
+      "error": {
+        "status": 400,
+        "code": "ATR_02",
+        "message": "Something went wrong.",
+        "field": "attribute_id"
+      }
+    }))
   }
 }
 

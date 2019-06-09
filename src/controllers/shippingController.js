@@ -1,4 +1,4 @@
-import { sequelize, shipping, shipping_region } from '../models';
+import { sequelize } from '../models';
 
 /**
  * Shipping functions

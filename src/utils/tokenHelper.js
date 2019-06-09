@@ -25,7 +25,8 @@ export default class TokenHelper {
     }, process.env.JWT_SECRET, {
       expiresIn: '24h',
     });
-    return `Bearer ${token},` + ' expires_in' + ':' + ' 24h';
+    const tokenString = `Bearer ${token}`
+    return tokenString + ' expires_in' + ':' + ' 24h';
   }
 
   /**

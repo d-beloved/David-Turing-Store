@@ -69,9 +69,9 @@ class CategoryController {
     })
     .then((categories) => {
       if (categories) {
-        res.status(200).json({
+        res.status(200).json(
           categories
-        })
+        )
       } else {
         res.status(400).json({
           "error": {
@@ -126,15 +126,15 @@ class CategoryController {
           attributes: ['category_id', 'department_id', 'name']
         })
         .then((foundProductCategory) => {
-          res.status(200).json({
+          res.status(200).json(
             foundProductCategory
-          })
+          )
         })
       } else {
         const foundProductCategory = []
-        res.status(200).json({
+        res.status(200).json(
           foundProductCategory
-        })
+        )
       }
     })
     .catch(error => res.status(500).json({
@@ -171,9 +171,9 @@ class CategoryController {
       where: { department_id }
     })
     .then((categories) => {
-      res.status(200).json({
+      res.status(200).json(
         categories
-      });
+      );
     })
     .catch(error => res.status(500).json({
       "error": {

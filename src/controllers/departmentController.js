@@ -13,9 +13,9 @@ class DepartmentController {
   static getDepartment(req, res) {
     return department.findAll()
     .then((departments) => {
-      res.status(200).json({
+      res.status(200).json(
         departments
-      });
+      );
     })
     .catch(error => res.status(400).json({
       "error": {
@@ -54,9 +54,9 @@ class DepartmentController {
     })
       .then((departments) => {
         if (departments) {
-          return res.status(200).json({
+          return res.status(200).json(
             departments
-          });
+          );
         } else {
           return res.status(400).json({
             "error": {

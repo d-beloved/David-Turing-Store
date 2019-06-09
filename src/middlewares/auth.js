@@ -52,8 +52,9 @@ export default class auth {
     }
     // set user ID in request object for next middlewares use
     // extract payload from decoded jwt
-    const { customer_id } = decoded;
+    const { customer_id, email } = decoded;
     req.customerId = customer_id;
+    req.email = email;
     // user authorised to access resource
     return next();
   }
