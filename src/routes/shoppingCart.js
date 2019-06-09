@@ -2,7 +2,7 @@ import { Router } from 'express';
 import generateCartId from '../utils/generateCartId';
 import CustomerInputValidation from "../utils/validatorFunctions";
 import ShoppingCartController from '../controllers/shoppingcartController';
-import redisMiddleware from '../../middlewares/redisCache';
+import redisMiddleware from '../middlewares/redisCache';
 
 const routes = Router();
 
