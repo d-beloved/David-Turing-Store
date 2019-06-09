@@ -14,7 +14,6 @@ class CheckoutController {
    * @description Charge the customer.
    */
   static Checkout(req, res, next) {
-    console.log("I was called");
     const amount = req.body.amount * 100;
     const orderId = req.body.order_id;
 

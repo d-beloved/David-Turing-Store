@@ -31,6 +31,7 @@
   },
   "homepage": "https://github.com/d-beloved/David-Turing-Store#readme",
   "dependencies": {
+    "@sendgrid/mail": "^6.4.0",
     "bcrypt": "^3.0.6",
     "body-parser": "^1.19.0",
     "chai": "^4.2.0",
