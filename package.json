@@ -23,8 +23,8 @@
   "author": "David Ayodeji",
   "license": "MIT",
   "engines": {
-    "node": "12.4.0",
-    "npm": "6.9.0"
+    "node": "8.12.0",
+    "npm": "6.4.1"
   },
   "bugs": {
     "url": "https://github.com/d-beloved/David-Turing-Store/issues"
