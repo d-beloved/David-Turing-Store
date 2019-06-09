@@ -10,11 +10,6 @@ module.exports = function(sequelize, DataTypes) {
       comment: "null",
       autoIncrement: true
     },
-    'department_id': {
-      type: DataTypes.INTEGER(11),
-      allowNull: false,
-      comment: "null"
-    },
     'name': {
       type: DataTypes.STRING(100),
       allowNull: false,
@@ -24,8 +19,14 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(1000),
       allowNull: true,
       comment: "null"
+    },
+    'department_id': {
+      type: DataTypes.INTEGER(11),
+      allowNull: false,
+      comment: "null"
     }
   }, {
+    timestamps: false,
     tableName: 'category'
   });
 };

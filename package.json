@@ -2,14 +2,14 @@
   "name": "david-turing-store",
   "version": "1.0.0",
   "description": "E-commerce store",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "heroku-postbuild": "npm run build",
     "start": "node lib/server.js",
     "build": "NODE_ENV=PRODUCTION babel src -d lib --copy-files",
     "start:dev": "nodemon --watch ./src --exec babel-node ./src/server.js",
-    "pretest": "NODE_ENV=test babel-node ./src/seeders/migrate",
-    "test": "NODE_ENV=test nyc mocha --require @babel/register ./src/tests/ --timeout 1000ms --exit"
+    "pretest": "NODE_ENV=test babel-node ./test/seeders/migrate",
+    "test": "NODE_ENV=test nyc mocha --require @babel/register ./test/ --timeout 1000ms --exit"
   },
   "repository": {
     "type": "git",
@@ -23,8 +23,8 @@
   "author": "David Ayodeji",
   "license": "MIT",
   "engines": {
-    "node": "8.12.0",
-    "npm": "6.4.1"
+    "node": "12.4.0",
+    "npm": "6.9.0"
   },
   "bugs": {
     "url": "https://github.com/d-beloved/David-Turing-Store/issues"
@@ -38,7 +38,8 @@
     "connect-session-sequelize": "^6.0.0",
     "cors": "^2.8.5",
     "dotenv": "^8.0.0",
-    "epress": "0.0.1-security",
+    "execsql": "0.0.3",
+    "express": "^4.17.1",
     "express-session": "^1.16.1",
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.9.1",

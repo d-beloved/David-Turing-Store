@@ -41,6 +41,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // app.use(cookieParser());
 
 // initialize express-session to allow us track the user across sessions.
+app.use('/stripe', express.static(`${__dirname}/public`));
+
 app.use(session({
   key: 'user_sid',
   secret: process.env.SESSION_SECRET,
@@ -48,6 +50,7 @@ app.use(session({
   saveUninitialized: true,
   store: store
 }));
+
 
 // creates the table for the session storage ifNotExist
 store.sync()

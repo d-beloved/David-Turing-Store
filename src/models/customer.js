@@ -1,5 +1,4 @@
 /* jshint indent: 2 */
-
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('customer', {
     'customer_id': {
@@ -83,6 +82,7 @@ module.exports = function(sequelize, DataTypes) {
       comment: "null"
     }
   }, {
+    timestamps: false,
     tableName: 'customer'
   });
 };
