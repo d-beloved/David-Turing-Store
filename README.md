@@ -189,6 +189,6 @@ The postman documentation is [ here ](https://documenter.getpostman.com/view/509
 For more details on how to use this API, check the **Documentation** out [ here ](https://documenter.getpostman.com/view/5092825/S1TZyFpL?version=latest).
 
 ## License and Copyright
-&copy; Ayodeji Moronkeji
+&copy; David Ayodeji
 
 Licensed under the [MIT License](LICENSE).
