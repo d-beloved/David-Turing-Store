@@ -149,29 +149,41 @@ class ProductController {
     const query_string = query.query_string;
     const all_words = req.query.all_words || 'on';
 
-    sequelize.query('CALL catalog_search(:inSearchString, :inAllWords, :inShortProductDescriptionLength, :inProductsPerPage, :inStartItem)',
-    {
-      replacements: {inSearchString: query_string, inAllWords: all_words, inShortProductDescriptionLength: description_length, inProductsPerPage: limit, inStartItem: offset}
-    })
-    .then((products) => {
-      sequelize.query('CALL catalog_count_search_result(:inSearchString, :inAllWords)',
+    if (query_string === '' || query_string === undefined) {
+      return res.status(400).json({
+        "error": {
+          "status": 400,
+          "code": "USR_02",
+          "message": "The field(s) are/is required.",
+          "field": "query_string"
+        }
+      })
+    }
+    else {
+      sequelize.query('CALL catalog_search(:inSearchString, :inAllWords, :inShortProductDescriptionLength, :inProductsPerPage, :inStartItem)',
       {
-        replacements: {inSearchString: query_string, inAllWords: all_words}
-      }).then(count => {
-        return res.status(200).json({
-          count: count[0]['count(*)'],
-          rows: products
-        });
-      }).catch(next)
-    })
-    .catch(error => res.status(400).json({
-      "error": {
-        "status": 400,
-        "code": "PRO_05",
-        "message": "Product fetch Error.",
-        "field": "Product"
-      }
-    }));
+        replacements: {inSearchString: query_string, inAllWords: all_words, inShortProductDescriptionLength: description_length, inProductsPerPage: limit, inStartItem: offset}
+      })
+      .then((products) => {
+        sequelize.query('CALL catalog_count_search_result(:inSearchString, :inAllWords)',
+        {
+          replacements: {inSearchString: query_string, inAllWords: all_words}
+        }).then(count => {
+          return res.status(200).json({
+            count: count[0]['count(*)'],
+            rows: products
+          });
+        }).catch(next)
+      })
+      .catch(error => res.status(400).json({
+        "error": {
+          "status": 400,
+          "code": "PRO_05",
+          "message": "Product fetch Error.",
+          "field": "Product"
+        }
+      }));
+    }
   }
 
   /**
