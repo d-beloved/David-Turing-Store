@@ -45,7 +45,7 @@ class CustomerController {
               const { password, ...rest } = dataValues;
               const accessToken = TokenHelper.generateToken(createdCustomer);
               res.status(200).json({
-                customer: createdCustomer,
+                customer: rest,
                 accessToken
               });
             })

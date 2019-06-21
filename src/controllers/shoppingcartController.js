@@ -17,7 +17,8 @@ class ShoppingCartController {
   static addProductToCart(req, res, next) {
     const {
       product_id,
-      attributes
+      attributes,
+      quantity
     } = req.body;
 
     if (!req.session.cartId) {
@@ -26,10 +27,11 @@ class ShoppingCartController {
       res.cookie('cartId', cartId);
     }
     const cart_id = req.session.cartId;
+    const neededQuantity = quantity || 1;
 
-    sequelize.query('CALL shopping_cart_add_product(:inCartId, :inProductId, :inAttributes)',
+    sequelize.query('CALL shopping_cart_add_product(:inCartId, :inProductId, :inAttributes, :inQuantity)',
     {
-      replacements: { inCartId: cart_id, inProductId: product_id, inAttributes: attributes },
+      replacements: { inCartId: cart_id, inProductId: product_id, inAttributes: attributes, inQuantity: neededQuantity },
     })
     .then(cartProduct => {
       sequelize.query('CALL shopping_cart_get_products(:inCartId)', {
