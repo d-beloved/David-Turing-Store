@@ -25,7 +25,7 @@ const app = express();
 // set up the Cors security for allowing requests from frontend
 const corsOptions = {
   credentials: true,
-  origin: ['http://localhost:3000', 'https://turing-shop-client.herokuapp.com', 'https://davidayodeji-turing.netlify.com'],
+  origin: ['http://localhost:3000', 'https://turing-shop-client.herokuapp.com'],
   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
 };
 app.use(cors(corsOptions));
